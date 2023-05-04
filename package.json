@@ -1,0 +1,25 @@
+{
+  "name": "eventify-compjr",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Gustavo Dantas Galote <gusgalot3g@gmail.com>",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "dev": "lerna run --parallel dev",
+    "lint": "lerna run --parallel lint",
+    "format": "lerna run --parallel format"
+  },
+  "private": "true",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/parser": "^5.59.2",
+    "eslint": "^8.39.0",
+    "lerna": "^6.6.2",
+    "prettier": "^2.8.8",
+    "typescript": "^5.0.4"
+  }
+}
