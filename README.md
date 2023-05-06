@@ -5,6 +5,22 @@ I am developing it as a trainee of the company and I hope I get approved and lea
 
 ## to-do
 
+- back-end (`api`)
+- [ ] Connect MongoDB
+- [ ] Create a simple CRUD for events
+  - [ ] basic
+  - [ ] with images
+- [ ] Implement authentication
+  - [ ] Implement Login via email
+  - [ ] Implement Social Login
+- [ ] Improve docs
+  - [ ] Share Postman requisitions
+  - [ ] Implement [SwaggerUI](https://swagger.io/tools/swagger-ui/)
+
+- front-end (`web`)
+
+- [ ] study `vue.js`
+
 ### later
 
 | these are the stuff that I want to do but are not that important
