@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3'
 services:
   mongo:
     image: mongo:6.0.5
@@ -7,8 +7,10 @@ services:
     ports:
       - "${MONGO_PORT}:27017"
     environment:
+      MONGO_INITDB_DATABASE: "${MONGO_DATABASE_NAME}"
       MONGO_INITDB_ROOT_USERNAME: "${MONGO_ROOT_USERNAME}"
       MONGO_INITDB_ROOT_PASSWORD: "${MONGO_ROOT_PASSWORD}"
-      MONGO_INITDB_DATABASE: "${MONGO_DATABASE_NAME}"
     volumes:
       - ./data:/data/db
+volumes:
+  data:

@@ -11,7 +11,10 @@
     "bootstrap": "lerna bootstrap",
     "dev": "lerna run --parallel dev",
     "lint": "lerna run --parallel lint",
-    "format": "lerna run --parallel format"
+    "format": "lerna run --parallel format",
+    "db:up": "yarn workspace api db:up",
+    "db:down": "yarn workspace api db:down",
+    "db:restart": "yarn workspace api db:restart"
   },
   "private": "true",
   "devDependencies": {
