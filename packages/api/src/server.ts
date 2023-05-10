@@ -1,8 +1,8 @@
 import { config } from 'dotenv';
 import express, { Request, Response, NextFunction } from 'express';
-import { router } from './routes';
-import { AppError } from './errors/AppError';
-import { connect } from './db';
+import { router } from '@/routes';
+import { AppError } from '@/errors/AppError';
+import { connect } from '@/db';
 
 config();
 
