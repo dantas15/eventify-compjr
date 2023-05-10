@@ -5,8 +5,8 @@ I am developing it as a trainee of the company and I hope I get approved and lea
 
 ## to-do
 
-- back-end (`api`)
-- [ ] Connect MongoDB
+- back-end `api`
+- [x] Connect MongoDB
 - [ ] Create a simple CRUD for events
   - [ ] basic
   - [ ] with images
@@ -17,7 +17,7 @@ I am developing it as a trainee of the company and I hope I get approved and lea
   - [ ] Share Postman requisitions
   - [ ] Implement [SwaggerUI](https://swagger.io/tools/swagger-ui/)
 
-- front-end (`web`)
+- front-end `web`
 
 - [ ] study `vue.js`
 

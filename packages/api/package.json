@@ -6,14 +6,21 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only ./src/server.ts",
     "lint": "eslint --ext .ts src",
-    "format": "prettier --write \"src/**/*.{js,ts}\""
+    "format": "prettier --write \"src/**/*.{js,ts}\"",
+    "db:up": "docker-compose up -d",
+    "db:down": "docker-compose down",
+    "db:restart": "yarn db:down && yarn db:up"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "mongoose": "^7.1.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
-    "@types/node": "^18.16.3",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^20.1.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.0.4"
   }
