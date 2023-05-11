@@ -16,6 +16,21 @@ export class EventController {
     }
   }
 
+  async get(request: Request, response: Response) {
+    const { id } = request.params;
+
+    if (!id) {
+      throw new AppError('Event id is required');
+    }
+
+    try {
+      const event = await Event.findById(id);
+      return response.json(event);
+    } catch {
+      throw new AppError('Event not found');
+    }
+  }
+
   async create(request: Request, response: Response) {
     const { date, ...reqData } = request.body;
 

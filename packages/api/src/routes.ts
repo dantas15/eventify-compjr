@@ -14,6 +14,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/events', eventsController.all);
+router.get('/events/:id', eventsController.get);
 router.post('/events', eventsController.create);
 router.put(
   '/events/image/:id',
