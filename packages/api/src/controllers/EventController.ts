@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { AppError } from '@/errors/AppError';
 import { Event } from '@/models/Event';
 import { eventZodSchema } from '@/types/event';
+import { validateAndParseISODate } from '@/utils/validateDate';
 
 // TODO: Add user authorization (store user name/id)
 
@@ -16,9 +17,14 @@ export class EventController {
   }
 
   async create(request: Request, response: Response) {
-    const reqData = request.body;
+    const { date, ...reqData } = request.body;
 
-    const validatedData = eventZodSchema.safeParse(reqData);
+    const validDate = validateAndParseISODate(date);
+
+    const validatedData = eventZodSchema.safeParse({
+      ...reqData,
+      date: validDate
+    });
 
     if (!validatedData.success) {
       throw new AppError(validatedData.error.message);
@@ -35,13 +41,19 @@ export class EventController {
   }
 
   async update(request: Request, response: Response) {
+    const { date, ...reqData } = request.body;
     const { id } = request.params;
 
     if (!id) {
       throw new AppError('Event id is required');
     }
 
-    const validatedData = eventZodSchema.safeParse(request.body);
+    const validDate = validateAndParseISODate(date);
+
+    const validatedData = eventZodSchema.safeParse({
+      ...reqData,
+      date: validDate
+    });
 
     if (!validatedData.success) {
       throw new AppError(validatedData.error.message);
@@ -60,6 +72,7 @@ export class EventController {
     }
   }
 
+  // TODO Delete image if it's set
   async delete(request: Request, response: Response) {
     const { id } = request.params;
 
@@ -75,6 +88,7 @@ export class EventController {
     }
   }
 
+  // TODO Delete image if it's set
   async updateFeaturedImage(request: Request, response: Response) {
     const { id } = request.params;
     const { file } = request;
