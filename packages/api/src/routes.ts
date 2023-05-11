@@ -1,23 +1,19 @@
 import { Router } from 'express';
-import User from './models/User';
+import { EventController } from '@/controllers/EventController';
 
 const router = Router();
 
-router.get('/', async (req, res) => {
-  const userData = await User.findOne({
-    email: 'gustavo.dantas@compjunior.com.br'
-  });
+const eventsController = new EventController();
 
-  if (!userData) {
-    const user = new User({
-      name: 'gustavo',
-      email: 'gustavo.dantas@compjunior.com.br'
-    });
-    console.log('oit');
-    user.save();
-    return res.json(user);
-  }
-  return res.json(userData);
+router.get('/', async (req, res) => {
+  return res.json({ message: 'Hello World' });
+});
+
+router.use('/events', () => {
+  router.get('/', eventsController.all);
+  router.post('/', eventsController.create);
+  router.put('/:id', eventsController.update);
+  router.delete('/:id', eventsController.delete);
 });
 
 export { router };
