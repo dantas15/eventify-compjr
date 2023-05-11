@@ -7,7 +7,7 @@ const storage = m.diskStorage({
   },
   filename: (req, file, cb) => {
     const [filename, extension] = file.originalname.split('.');
-    cb(null, `${slugify(filename)}.${extension}`);
+    cb(null, `${slugify(filename)}-${Date.now()}.${extension}`);
   }
 });
 

@@ -74,4 +74,33 @@ export class EventController {
       throw new AppError("Event couldn't be deleted");
     }
   }
+
+  async updateFeaturedImage(request: Request, response: Response) {
+    const { id } = request.params;
+    const { file } = request;
+
+    if (!id) {
+      throw new AppError('Event id is required');
+    }
+
+    if (!file) {
+      throw new AppError('File is required');
+    }
+
+    try {
+      const newEvent = await Event.findByIdAndUpdate(
+        id,
+        {
+          $set: {
+            image: file.filename
+          }
+        },
+        { new: true }
+      );
+      response.json(newEvent);
+    } catch (err) {
+      console.log(err);
+      throw new AppError("Event image couldn't be updated");
+    }
+  }
 }
