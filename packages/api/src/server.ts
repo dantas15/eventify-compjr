@@ -3,7 +3,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
 import { router } from '@/routes';
 import { AppError } from '@/errors/AppError';
-import { connect } from '@/db';
+import { connect } from '@/config/db';
 
 config();
 
