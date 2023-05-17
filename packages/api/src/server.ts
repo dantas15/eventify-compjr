@@ -4,6 +4,7 @@ import 'express-async-errors';
 import { router } from '@/routes';
 import { AppError } from '@/errors/AppError';
 import { connect } from '@/config/db';
+import { googlePassportConfig } from '@/config/google';
 
 config();
 
@@ -13,6 +14,8 @@ const port = PORT || 3000;
 
 const app = express();
 app.use(express.json());
+
+googlePassportConfig();
 
 app.use(router);
 
