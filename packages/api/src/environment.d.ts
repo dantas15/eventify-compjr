@@ -8,6 +8,8 @@ declare global {
       MONGO_HOST: string;
       MONGO_PORT: string;
       MONGO_DATABASE_NAME: string;
+      GOOGLE_CLIENT_ID: string;
+      GOOGLE_CLIENT_SECRET: string;
     }
   }
 }

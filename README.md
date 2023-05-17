@@ -9,7 +9,7 @@ I am developing it as a trainee of the company and I hope I get approved and lea
 - [x] Connect MongoDB
 - [x] Create a simple CRUD for events
   - [x] basic
-  - [ ] with images
+  - [x] with images
 - [ ] Implement authentication
   - [ ] Implement Login via email
   - [ ] Implement Social Login
