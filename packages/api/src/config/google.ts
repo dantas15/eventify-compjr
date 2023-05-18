@@ -1,6 +1,8 @@
 import { config } from 'dotenv';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import jwt from 'jsonwebtoken';
+import { secret, expiresIn } from '@/config/jwt';
 
 config();
 
@@ -16,8 +18,10 @@ export function googlePassportConfig() {
         passReqToCallback: true
       },
       (request, accessToken, refreshToken, profile, done) => {
-        // TODO get jwt token
-        return done(null, { profile /*, token */ });
+        const token = jwt.sign({ userId: profile.id }, secret, {
+          expiresIn
+        });
+        return done(null, { profile, token });
       }
     )
   );
