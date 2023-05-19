@@ -35,7 +35,10 @@ router.get('/image/:filename', filesController.getImageFromFilename);
 
 router.get(
   '/auth/google/callback',
-  passport.authenticate('google', { session: false }),
+  passport.authenticate('google', {
+    scope: ['profile', 'email'],
+    session: false
+  }),
   googleController.auth
 );
 router.get('/auth/google/url', googleController.getUrl);
