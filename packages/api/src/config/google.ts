@@ -31,7 +31,6 @@ export function googlePassportConfig() {
 
         const user = new User({
           googleId: profile.id,
-          googleImgUrl: profile.profileUrl,
           email: profile.emails ? profile.emails[0].value : undefined,
           name: profile.displayName
         });

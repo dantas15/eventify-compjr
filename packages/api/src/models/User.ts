@@ -13,9 +13,8 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  googleImgUrl: {
-    type: String,
-    required: true
+  profilePictureUrl: {
+    type: String
   }
 });
 
