@@ -15,7 +15,7 @@ export function googlePassportConfig() {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: `${
-          process.env.API_URL || `http://127.0.0.1:${process.env.port}`
+          process.env.API_URL || `http://127.0.0.1:${process.env.PORT}`
         }/auth/google/callback`,
         passReqToCallback: true
       },
