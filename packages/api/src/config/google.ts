@@ -2,7 +2,9 @@ import { config } from 'dotenv';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import jwt from 'jsonwebtoken';
+
 import { secret, expiresIn } from '@/config/jwt';
+import User from '@/models/User';
 
 config();
 
@@ -17,8 +19,26 @@ export function googlePassportConfig() {
         }/auth/google/callback`,
         passReqToCallback: true
       },
-      (request, accessToken, refreshToken, profile, done) => {
-        const token = jwt.sign({ userId: profile.id }, secret, {
+      async (request, accessToken, refreshToken, profile, done) => {
+        const userExists = await User.findOne({ googleId: profile.id }).exec();
+
+        if (userExists) {
+          const token = jwt.sign(userExists.id, secret, {
+            expiresIn
+          });
+          return done(null, { profile, token });
+        }
+
+        const user = new User({
+          googleId: profile.id,
+          googleImgUrl: profile.profileUrl,
+          email: profile.emails ? profile.emails[0].value : undefined,
+          name: profile.displayName
+        });
+
+        await user.save();
+
+        const token = jwt.sign(user.id, secret, {
           expiresIn
         });
         return done(null, { profile, token });
