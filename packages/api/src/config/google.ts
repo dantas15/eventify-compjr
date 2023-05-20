@@ -31,6 +31,7 @@ export function googlePassportConfig() {
 
         const user = new User({
           googleId: profile.id,
+          // TODO maybe look for the first verified email?
           email: profile.emails ? profile.emails[0].value : undefined,
           name: profile.displayName
         });

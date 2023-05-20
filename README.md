@@ -10,11 +10,14 @@ I am developing it as a trainee of the company and I hope I get approved and lea
 - [x] Create a simple CRUD for events
   - [x] basic
   - [x] with images
-- [ ] Implement authentication
-  - [ ] Implement Login via email
-  - [ ] Implement Social Login
+- [x] Implement authentication
+  - ~~Implement Login via email (not necessary)~~
+  - [x] Implement Social Login
+- [ ] Implement CRUD permissions
+  - [ ] ensureAuthenticated to delete/update events
+  - [ ] show created events by the user
 - [ ] Improve docs
-  - [ ] Share Postman requisitions
+  - [ ] Share Insomnia requisitions
   - [ ] Implement [SwaggerUI](https://swagger.io/tools/swagger-ui/)
 
 - front-end `web`
