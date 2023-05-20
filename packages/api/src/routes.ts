@@ -1,23 +1,28 @@
 import { Router } from 'express';
-import User from './models/User';
+import { multerMiddleware } from '@/middlewares/multer';
+
+import { EventController } from '@/controllers/EventController';
+import { FileController } from '@/controllers/FileController';
 
 const router = Router();
 
-router.get('/', async (req, res) => {
-  const userData = await User.findOne({
-    email: 'gustavo.dantas@compjunior.com.br'
-  });
+const eventsController = new EventController();
+const filesController = new FileController();
 
-  if (!userData) {
-    const user = new User({
-      name: 'gustavo',
-      email: 'gustavo.dantas@compjunior.com.br'
-    });
-    console.log('oit');
-    user.save();
-    return res.json(user);
-  }
-  return res.json(userData);
+router.get('/', async (req, res) => {
+  return res.json({ message: 'Hello World' });
 });
 
+router.get('/events', eventsController.all);
+router.get('/events/:id', eventsController.get);
+router.post('/events', eventsController.create);
+router.put(
+  '/events/image/:id',
+  multerMiddleware.single('image'),
+  eventsController.updateFeaturedImage
+);
+router.put('/events/:id', eventsController.update);
+router.delete('/events/:id', eventsController.delete);
+
+router.get('/image/:filename', filesController.getImageFromFilename);
 export { router };

@@ -16,3 +16,17 @@
     ```bash
     docker-compose down
     ```
+
+## how the collections are supposed to work
+
+| this is a draft, it may change when I implement it
+
+### Events
+
+| property  | type  |
+|-----------|-------|
+| title | string |
+| description | string |
+| date | date/string |
+| location | string? |
+| image | string? |

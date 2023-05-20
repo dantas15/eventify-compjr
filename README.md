@@ -7,8 +7,8 @@ I am developing it as a trainee of the company and I hope I get approved and lea
 
 - back-end `api`
 - [x] Connect MongoDB
-- [ ] Create a simple CRUD for events
-  - [ ] basic
+- [x] Create a simple CRUD for events
+  - [x] basic
   - [ ] with images
 - [ ] Implement authentication
   - [ ] Implement Login via email
