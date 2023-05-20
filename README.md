@@ -19,11 +19,11 @@ I am developing it as a trainee of the company and I hope I get approved and lea
       - [x] update
       - [x] delete
     - [x] show created events by the user
-  - [ ] improve file management
-    - [ ] delete files when deleting events
-    - [ ] delete files when updating image of an event
+  - [x] improve file management
+    - [x] delete files when deleting events
+    - [x] delete files when updating image of an event
   - [ ] Improve docs
-    - [ ] Share Insomnia requisitions
+    - [ ] Share Insomnia requests
     - [ ] Implement [SwaggerUI](https://swagger.io/tools/swagger-ui/)
 
 - front-end `web`
