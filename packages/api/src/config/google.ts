@@ -4,7 +4,7 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import jwt from 'jsonwebtoken';
 
 import { secret, expiresIn } from '@/config/jwt';
-import User from '@/models/User';
+import { User } from '@/models/User';
 
 config();
 
