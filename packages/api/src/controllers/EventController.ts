@@ -3,6 +3,10 @@ import { AppError } from '@/errors/AppError';
 import { Event } from '@/models/Event';
 import { eventZodSchema } from '@/types/event';
 import { validateAndParseISODate } from '@/utils/validateDate';
+import {
+  deleteImageFromFilename,
+  getImageFilePath
+} from '@/utils/imageStorage';
 
 export class EventController {
   async all(request: Request, response: Response) {
@@ -30,32 +34,33 @@ export class EventController {
   }
 
   async create(request: Request, response: Response) {
-    const { userId: currentUserId } = request;
+    const { userData } = request;
     const { date, ...reqData } = request.body;
 
     const validDate = validateAndParseISODate(date);
 
     const validatedData = eventZodSchema.omit({ userId: true }).safeParse({
       ...reqData,
-      date: validDate
+      date: validDate ? validDate : date
     });
 
     if (!validatedData.success) {
       throw new AppError(validatedData.error.message);
     }
 
-    const event = new Event({ ...validatedData.data, userId: currentUserId });
+    const event = new Event({ ...validatedData.data, userId: userData.userId });
 
     try {
       await event.save();
       return response.status(201).json(event);
     } catch (err) {
+      console.log({ err });
       throw new AppError("Event couldn't be created");
     }
   }
 
   async update(request: Request, response: Response) {
-    const { userId } = request;
+    const { userData } = request;
     const { date, ...reqData } = request.body;
     const { id } = request.params;
 
@@ -69,7 +74,7 @@ export class EventController {
       throw new AppError('Event not found');
     }
 
-    if (event.userId !== userId) {
+    if (event.userId !== userData.userId) {
       throw new AppError('User not authorized');
     }
 
@@ -95,10 +100,9 @@ export class EventController {
     return response.json(updatedEvent);
   }
 
-  // TODO Delete image if it's set
   async delete(request: Request, response: Response) {
     const { id } = request.params;
-    const { userId } = request;
+    const { userData } = request;
 
     if (!id) {
       throw new AppError('Event id is required');
@@ -110,8 +114,12 @@ export class EventController {
       throw new AppError('Event not found');
     }
 
-    if (event.userId !== userId) {
+    if (event.userId !== userData.userId) {
       throw new AppError('User not authorized');
+    }
+
+    if (event.image) {
+      deleteImageFromFilename(getImageFilePath(event.image));
     }
 
     try {
@@ -122,10 +130,9 @@ export class EventController {
     }
   }
 
-  // TODO Delete image if it's set
   async updateFeaturedImage(request: Request, response: Response) {
     const { id } = request.params;
-    const { file } = request;
+    const { userData, file } = request;
 
     if (!id) {
       throw new AppError('Event id is required');
@@ -135,9 +142,22 @@ export class EventController {
       throw new AppError('File is required');
     }
 
+    const event = await Event.findById(id);
+
+    if (!event) {
+      throw new AppError('Event not found');
+    }
+
+    if (event.userId !== userData.userId) {
+      throw new AppError('User not authorized');
+    }
+
+    if (event.image) {
+      deleteImageFromFilename(getImageFilePath(event.image));
+    }
+
     try {
-      const updatedEvent = await Event.findByIdAndUpdate(
-        id,
+      const updatedEvent = await event.updateOne(
         {
           $set: {
             image: file.filename
