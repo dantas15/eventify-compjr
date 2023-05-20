@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { ObjectId, isValidObjectId } from 'mongoose';
 
 const userZodSchema = z.object({
   name: z.string(),
@@ -7,6 +8,14 @@ const userZodSchema = z.object({
   profilePictureUrl: z.string().url().optional()
 });
 
-type User = z.infer<typeof userZodSchema>;
+const createdUserZodSchema = userZodSchema.extend({
+  _id: z.custom<ObjectId>(
+    (value) => isValidObjectId(value),
+    '_id is not a valid ObjectId'
+  )
+});
 
-export { userZodSchema, User };
+type User = z.infer<typeof userZodSchema>;
+type CreatedUser = z.infer<typeof createdUserZodSchema>;
+
+export { userZodSchema, User, createdUserZodSchema, CreatedUser };
