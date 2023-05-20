@@ -22,14 +22,15 @@ router.get('/', async (req, res) => {
 
 router.get('/events', eventsController.all);
 router.get('/events/:id', eventsController.get);
-router.post('/events', eventsController.create);
+router.post('/events', ensureAuthenticated, eventsController.create);
 router.put(
   '/events/image/:id',
+  ensureAuthenticated,
   multerMiddleware.single('image'),
   eventsController.updateFeaturedImage
 );
-router.put('/events/:id', eventsController.update);
-router.delete('/events/:id', eventsController.delete);
+router.put('/events/:id', ensureAuthenticated, eventsController.update);
+router.delete('/events/:id', ensureAuthenticated, eventsController.delete);
 
 router.get('/image/:filename', filesController.getImageFromFilename);
 
@@ -48,4 +49,6 @@ router.get(
 );
 
 router.get('/me', ensureAuthenticated, userController.me);
+router.get('/me/events', ensureAuthenticated, userController.myEvents);
+
 export { router };

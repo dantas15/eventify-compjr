@@ -6,7 +6,8 @@ const eventSchema = new Schema<EventType>({
   description: { type: String, required: false },
   date: { type: Date, required: true },
   location: { type: String, required: false },
-  image: { type: String, required: false }
+  image: { type: String, required: false },
+  userId: { type: String, required: true }
 });
 
 const eventModel = model('Event', eventSchema);

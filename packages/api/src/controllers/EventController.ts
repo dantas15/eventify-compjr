@@ -4,8 +4,6 @@ import { Event } from '@/models/Event';
 import { eventZodSchema } from '@/types/event';
 import { validateAndParseISODate } from '@/utils/validateDate';
 
-// TODO: Add user authorization (store user name/id)
-
 export class EventController {
   async all(request: Request, response: Response) {
     try {
@@ -32,11 +30,12 @@ export class EventController {
   }
 
   async create(request: Request, response: Response) {
+    const { userId: currentUserId } = request;
     const { date, ...reqData } = request.body;
 
     const validDate = validateAndParseISODate(date);
 
-    const validatedData = eventZodSchema.safeParse({
+    const validatedData = eventZodSchema.omit({ userId: true }).safeParse({
       ...reqData,
       date: validDate
     });
@@ -45,7 +44,7 @@ export class EventController {
       throw new AppError(validatedData.error.message);
     }
 
-    const event = new Event(validatedData.data);
+    const event = new Event({ ...validatedData.data, userId: currentUserId });
 
     try {
       await event.save();
@@ -56,6 +55,7 @@ export class EventController {
   }
 
   async update(request: Request, response: Response) {
+    const { userId } = request;
     const { date, ...reqData } = request.body;
     const { id } = request.params;
 
@@ -63,40 +63,59 @@ export class EventController {
       throw new AppError('Event id is required');
     }
 
+    const event = await Event.findById(id);
+
+    if (!event) {
+      throw new AppError('Event not found');
+    }
+
+    if (event.userId !== userId) {
+      throw new AppError('User not authorized');
+    }
+
     const validDate = validateAndParseISODate(date);
 
     const validatedData = eventZodSchema.safeParse({
       ...reqData,
-      date: validDate
+      date: validDate,
+      // do not update image url here
+      image: undefined
     });
 
     if (!validatedData.success) {
       throw new AppError(validatedData.error.message);
     }
 
-    try {
-      const event = await Event.findByIdAndUpdate(id, validatedData.data, {
-        // By default, findOneAndUpdate() returns the document as it was before update was applied
-        // if you set new: true, findOneAndUpdate() will give you the object after update was applied.
-        new: true
-      });
+    const updatedEvent = await event.updateOne(validatedData.data, {
+      // By default, findOneAndUpdate() returns the document as it was before update was applied
+      // if you set new: true, findOneAndUpdate() will give you the object after update was applied.
+      new: true
+    });
 
-      return response.json(event);
-    } catch {
-      throw new AppError("Event couldn't be updated");
-    }
+    return response.json(updatedEvent);
   }
 
   // TODO Delete image if it's set
   async delete(request: Request, response: Response) {
     const { id } = request.params;
+    const { userId } = request;
 
     if (!id) {
       throw new AppError('Event id is required');
     }
 
+    const event = await Event.findById(id);
+
+    if (!event) {
+      throw new AppError('Event not found');
+    }
+
+    if (event.userId !== userId) {
+      throw new AppError('User not authorized');
+    }
+
     try {
-      await Event.findByIdAndDelete(id);
+      await event.deleteOne();
       return response.status(204).send();
     } catch {
       throw new AppError("Event couldn't be deleted");
@@ -117,7 +136,7 @@ export class EventController {
     }
 
     try {
-      const newEvent = await Event.findByIdAndUpdate(
+      const updatedEvent = await Event.findByIdAndUpdate(
         id,
         {
           $set: {
@@ -126,7 +145,7 @@ export class EventController {
         },
         { new: true }
       );
-      response.json(newEvent);
+      response.json(updatedEvent);
     } catch (err) {
       console.log(err);
       throw new AppError("Event image couldn't be updated");
