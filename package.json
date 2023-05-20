@@ -10,6 +10,8 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "dev": "lerna run --parallel dev",
+    "dev:api": "yarn workspace api dev",
+    "dev:web": "yarn workspace web dev",
     "lint": "lerna run --parallel lint",
     "format": "lerna run --parallel format",
     "db:up": "yarn workspace api db:up",

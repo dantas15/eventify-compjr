@@ -6,8 +6,15 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   email: {
+    type: String
+  },
+  googleId: {
     type: String,
-    required: true
+    required: true,
+    unique: true
+  },
+  profilePictureUrl: {
+    type: String
   }
 });
 
