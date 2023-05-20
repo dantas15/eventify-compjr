@@ -6,23 +6,22 @@ I am developing it as a trainee of the company and I hope I get approved and lea
 ## to-do
 
 - back-end `api`
-- [x] Connect MongoDB
-- [x] Create a simple CRUD for events
-  - [x] basic
-  - [x] with images
-- [x] Implement authentication
-  - ~~Implement Login via email (not necessary)~~
-  - [x] Implement Social Login
-- [ ] Implement CRUD permissions
-  - [ ] ensureAuthenticated to delete/update events
-  - [ ] show created events by the user
-- [ ] Improve docs
-  - [ ] Share Insomnia requisitions
-  - [ ] Implement [SwaggerUI](https://swagger.io/tools/swagger-ui/)
+  - [x] Connect MongoDB
+  - [x] Create a simple CRUD for events
+    - [x] basic
+    - [x] with images
+  - [x] Implement authentication
+    - ~~Implement Login via email (not necessary)~~
+    - [x] Implement Social Login
+  - [ ] Implement CRUD permissions
+    - [ ] ensureAuthenticated to delete/update events
+    - [ ] show created events by the user
+  - [ ] Improve docs
+    - [ ] Share Insomnia requisitions
+    - [ ] Implement [SwaggerUI](https://swagger.io/tools/swagger-ui/)
 
 - front-end `web`
-
-- [ ] study `vue.js`
+  - [ ] study `vue.js`
 
 ### later
 
