@@ -1,5 +1,5 @@
 import { isValid, parseISO } from 'date-fns';
 
 export function validateAndParseISODate(date: string) {
-  return isValid(date) ? parseISO(date) : false;
+  return isValid(new Date(date)) ? parseISO(date) : false;
 }
