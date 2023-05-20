@@ -1,12 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 
-import { secret } from '@/config/jwt';
+import { JwtPayload, secret } from '@/config/jwt';
 import { AppError } from '@/errors/AppError';
-
-type Payload = {
-  sub: string;
-};
 
 export function ensureAuthenticated(
   request: Request,
@@ -24,11 +20,8 @@ export function ensureAuthenticated(
   const [, token] = authToken.split(' ');
 
   try {
-    // Validate token
-    const { sub } = verify(token, secret) as Payload;
-
-    // Get user information
-    request.userId = sub;
+    // Validate token and pass to userData
+    request.userData = verify(token, secret) as JwtPayload;
     return next();
   } catch (err) {
     throw new AppError('Invalid token', 401);
