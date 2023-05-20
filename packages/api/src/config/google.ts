@@ -23,7 +23,7 @@ export function googlePassportConfig() {
         const userExists = await User.findOne({ googleId: profile.id }).exec();
 
         if (userExists) {
-          const token = jwt.sign(userExists.id, secret, {
+          const token = jwt.sign({ googleId: profile.id }, secret, {
             expiresIn
           });
           return done(null, { profile, token });
@@ -37,7 +37,7 @@ export function googlePassportConfig() {
 
         await user.save();
 
-        const token = jwt.sign(user.id, secret, {
+        const token = jwt.sign({ googleId: profile.id }, secret, {
           expiresIn
         });
         return done(null, { profile, token });
