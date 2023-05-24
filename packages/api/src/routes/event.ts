@@ -23,8 +23,6 @@ const eventsController = new EventController();
  *               type: array
  *               items:
  *                 $ref: '#/components/schemas/Event'
- *       400:
- *         description: Events cannot be fetched
  *   post:
  *     summary: Create a new event. Does not insert the image URL.
  *     tags: [Events]
@@ -47,6 +45,14 @@ const eventsController = new EventController();
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Event'
+ *       400:
+ *         description: Returns a ZodError with the following validation errors
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message: string
  *     security:
  *       - bearerAuth: ['user']
  */
@@ -73,7 +79,6 @@ const eventsController = new EventController();
  *               $ref: '#/components/schemas/Event'
  *       404:
  *         description: Event with the specified ID not found
-
  *   put:
  *     summary: Update a specific event by ID
  *     tags: [Events]
@@ -99,6 +104,8 @@ const eventsController = new EventController();
  *               $ref: '#/components/schemas/Event'
  *       404:
  *         description: Event with the specified ID not found
+ *       401:
+ *         description: Not authorized
 
  *   delete:
  *     summary: Delete a specific event by ID
@@ -113,6 +120,8 @@ const eventsController = new EventController();
  *     responses:
  *       204:
  *         description: Event deleted successfully
+ *       401:
+ *         description: Not authorized
  *       404:
  *         description: Event with the specified ID not found
 
@@ -144,6 +153,8 @@ const eventsController = new EventController();
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Event'
+ *       401:
+ *         description: Not authorized
  *       404:
  *         description: Event with the specified ID not found
  */
