@@ -63,6 +63,22 @@ const router = Router();
  *         profilePictureUrl:
  *           type: string
  *           nullable: true
+ *     ZodError:
+ *       type: object
+ *       properties:
+ *         errors:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/ZodErrorItem'
+ *     ZodErrorItem:
+ *       type: object
+ *       properties:
+ *         code:
+ *           type: string
+ *         message:
+ *           type: string
+ *         path:
+ *           type: string
  */
 
 router.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
