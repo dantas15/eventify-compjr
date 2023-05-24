@@ -10,12 +10,8 @@ import {
 
 export class EventController {
   async all(request: Request, response: Response) {
-    try {
-      const events = await Event.find();
-      return response.json(events);
-    } catch {
-      throw new AppError('Events not found');
-    }
+    const events = await Event.find();
+    return response.json(events);
   }
 
   async get(request: Request, response: Response) {
