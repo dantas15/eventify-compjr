@@ -22,9 +22,16 @@ I am developing it as a trainee of the company and I hope I get approved and lea
   - [x] improve file management
     - [x] delete files when deleting events
     - [x] delete files when updating image of an event
-  - [ ] Improve docs
+  - [x] Improve docs
     - [ ] Share Insomnia requests
-    - [ ] Implement [SwaggerUI](https://swagger.io/tools/swagger-ui/)
+    - [x] Implement [SwaggerUI](https://swagger.io/tools/swagger-ui/)
+  - [ ] Add possibility so subscribe to events
+    - [ ] Implement CRUD for subscriptions
+      - eventId
+      - userIds
+    - [ ] cancel subscription
+    - [ ] show subscriptions (users)
+    - [ ] show subscriptions (events)
 
 - front-end `web`
   - [ ] study `vue.js`
