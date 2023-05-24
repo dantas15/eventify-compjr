@@ -50,6 +50,19 @@ const router = Router();
  *         - title
  *         - date
  *         - userId
+ *     UserProfile:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *         googleId:
+ *           type: string
+ *         email:
+ *           type: string
+ *           nullable: true
+ *         profilePictureUrl:
+ *           type: string
+ *           nullable: true
  */
 
 router.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));

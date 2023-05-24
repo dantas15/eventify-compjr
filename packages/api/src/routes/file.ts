@@ -6,7 +6,7 @@ const filesController = new FileController();
 
 /**
  * @swagger
- * /image/{filename}:
+ * /files/image/{filename}:
  *   get:
  *     summary: Get an image by filename
  *     tags: [Images]
