@@ -1,9 +1,8 @@
 import { config } from 'dotenv';
-import express, { Request, Response, NextFunction } from 'express';
+import express from 'express';
 import 'express-async-errors';
 import passport from 'passport';
 import { router } from '@/routes';
-import { AppError } from '@/errors/AppError';
 import { connect } from '@/config/db';
 import { googlePassportConfig } from '@/config/google';
 
@@ -19,22 +18,6 @@ app.use(passport.initialize());
 googlePassportConfig();
 
 app.use(router);
-
-app.use(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  (err: Error, request: Request, response: Response, _next: NextFunction) => {
-    if (err instanceof AppError) {
-      return response.status(err.statusCode).json({
-        message: err.message
-      });
-    }
-
-    return response.status(500).json({
-      status: 'Error',
-      message: `Internal server error ${err.message}`
-    });
-  }
-);
 
 app.listen(port, async () => {
   await connect();
