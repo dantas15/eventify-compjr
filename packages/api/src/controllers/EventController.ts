@@ -25,7 +25,7 @@ export class EventController {
       const event = await Event.findById(id);
       return response.json(event);
     } catch {
-      throw new AppError('Event not found');
+      throw new AppError('Event not found', 404);
     }
   }
 
@@ -61,13 +61,13 @@ export class EventController {
     const { id } = request.params;
 
     if (!id) {
-      throw new AppError('Event id is required');
+      throw new AppError('Event id is required', 400);
     }
 
     const event = await Event.findById(id);
 
     if (!event) {
-      throw new AppError('Event not found');
+      throw new AppError('Event not found', 404);
     }
 
     if (event.userId !== userData.userId) {
@@ -107,7 +107,7 @@ export class EventController {
     const event = await Event.findById(id);
 
     if (!event) {
-      throw new AppError('Event not found');
+      throw new AppError('Event not found', 404);
     }
 
     if (event.userId !== userData.userId) {
