@@ -35,6 +35,23 @@ I am developing it as a trainee of the company and I hope I get approved and lea
 
 - front-end `web`
   - [ ] study `vue.js`
+  - pages
+    - [ ] landing
+      - [ ] carousel
+      - [ ] about
+      - [ ] navbar
+      - [ ] footer
+    - [ ] login/signup
+    - [ ] events
+      - [ ] list all
+        - [ ] cards
+      - [ ] show one (modal)
+    - [ ] dashboard
+      - [ ] sidebar
+      - [ ] table showing events
+        - [ ] pagination
+    - [ ] create event (modal)
+    - [ ] update event (modal)
 
 ### later
 
