@@ -11,7 +11,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div class="headings">
-    <h1 v-if="size === 'big'" class="green"><slot></slot></h1>
+    <h1 v-if="size === 'big'" class="primary"><slot></slot></h1>
     <h3 v-else-if="size === 'regular'" ><slot></slot></h3>
   </div>
 </template>

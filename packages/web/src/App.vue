@@ -1,18 +1,17 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import HeadingTitle from './components/HeadingTitle.vue'
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="32" height="32" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <HeadingTitle size="big">eventify</HeadingTitle>
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/">Página inicial</RouterLink>
       </nav>
     </div>
   </header>
@@ -22,8 +21,14 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <style scoped>
 header {
-  line-height: 1.5;
-  max-height: 100vh;
+  //line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  //max-height: 100vh;
+}
+
+header img {
+  flex-shrink: 1;
 }
 
 .logo {
