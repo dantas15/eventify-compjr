@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import HeadingTitle from "@/components/HeadingTitle.vue";
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <HeadingTitle size="big">Bem-vindo ao eventify!</HeadingTitle>
+    <HeadingTitle>seu app para encontrar e compartilhar eventos</HeadingTitle>
   </main>
 </template>

@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HeadingTitle from './components/HeadingTitle.vue'
+import HeadingTitle from '@/components/HeadingTitle.vue'
+import { PhGoogleLogo } from '@phosphor-icons/vue';
+
+// TODO implement real authentication
+const authenticated = false;
 </script>
 
 <template>
@@ -13,6 +17,11 @@ import HeadingTitle from './components/HeadingTitle.vue'
       <nav>
         <RouterLink to="/">Página inicial</RouterLink>
       </nav>
+
+      <div class="nav-auth">
+        <RouterLink v-if="!authenticated" to="/login">Entre com sua conta Google <PhGoogleLogo weight="bold" color="white" line/></RouterLink>
+        <RouterLink v-else-if="authenticated" to="/me">Minha conta</RouterLink>
+      </div>
     </div>
   </header>
 
@@ -21,10 +30,11 @@ import HeadingTitle from './components/HeadingTitle.vue'
 
 <style scoped>
 header {
-  //line-height: 1.5;
   display: flex;
   flex-direction: column;
-  //max-height: 100vh;
+  margin-bottom: 64px;
+  line-height: 1.5;
+  max-height: 100vh;
 }
 
 header img {
@@ -43,11 +53,11 @@ nav {
   margin-top: 2rem;
 }
 
-nav a.router-link-exact-active {
+nav a.router-link-exact-active, nav a.router-link-exact-active svg {
   color: var(--color-text);
 }
 
-nav a.router-link-exact-active:hover {
+nav a.router-link-exact-active:hover, nav a.router-link-exact-active svg:hover {
   background-color: transparent;
 }
 
@@ -59,6 +69,15 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
+}
+
+.nav-auth {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 1.6rem;
 }
 
 @media (min-width: 1024px) {
