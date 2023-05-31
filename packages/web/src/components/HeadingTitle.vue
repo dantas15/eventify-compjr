@@ -1,6 +1,6 @@
 <script setup lang="ts">
 type Props = {
-  size: "big" | "regular";
+  size?: "big" | "regular";
 };
 
 // this is exported by default
