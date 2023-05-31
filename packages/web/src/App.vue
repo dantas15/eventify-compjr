@@ -15,13 +15,14 @@ const authenticated = false;
       <HeadingTitle size="big">eventify</HeadingTitle>
 
       <nav>
-        <RouterLink to="/">Página inicial</RouterLink>
+        <div>
+          <RouterLink to="/">página inicial</RouterLink>
+        </div>
+        <div>
+          <RouterLink v-if="!authenticated" to="/login">entre com sua conta google <PhGoogleLogo weight="bold" color="white" line/></RouterLink>
+          <RouterLink v-else to="/me">minha conta</RouterLink>
+        </div>
       </nav>
-
-      <div class="nav-auth">
-        <RouterLink v-if="!authenticated" to="/login">Entre com sua conta Google <PhGoogleLogo weight="bold" color="white" line/></RouterLink>
-        <RouterLink v-else-if="authenticated" to="/me">Minha conta</RouterLink>
-      </div>
     </div>
   </header>
 
@@ -49,35 +50,34 @@ header img {
 nav {
   width: 100%;
   font-size: 12px;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
   margin-top: 2rem;
 }
 
-nav a.router-link-exact-active, nav a.router-link-exact-active svg {
-  color: var(--color-text);
+nav div {
+  text-align: center;
 }
 
-nav a.router-link-exact-active:hover, nav a.router-link-exact-active svg:hover {
+nav div a.router-link-exact-active {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-decoration-color: var(--color-background-mute);
+}
+
+nav div a.router-link-exact-active:hover {
   background-color: transparent;
 }
 
-nav a {
+nav div a {
   display: inline-block;
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
 }
 
-nav a:first-of-type {
+nav div a:first-of-type {
   border: 0;
-}
-
-.nav-auth {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 1.6rem;
 }
 
 @media (min-width: 1024px) {
