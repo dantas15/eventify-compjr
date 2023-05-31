@@ -1,7 +1,21 @@
 <script setup lang="ts">
-const msg = 'login'
+import {PhGoogleLogo, PhLock} from "@phosphor-icons/vue";
+import GoogleButton from "@/components/GoogleButton.vue";
 </script>
 
 <template>
-  <h1>{{ msg}}</h1>
+  <main class="customBaseWrapper main-wrapper">
+    <h1>escolha uma opção:</h1>
+
+    <hr />
+    <GoogleButton />
+  </main>
 </template>
+
+<style scoped>
+
+.main-wrapper {
+  text-align: center;
+}
+
+</style>
