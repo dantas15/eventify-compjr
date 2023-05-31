@@ -8,6 +8,11 @@
   font-weight: normal;
 }
 
+hr {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
 /*
  primary color (currently green): hsla(160, 100%, 37%,
  (opacity depends on text/hover)
