@@ -8,8 +8,13 @@
   font-weight: normal;
 }
 
+/*
+ primary color (currently green): hsla(160, 100%, 37%,
+ (opacity depends on text/hover)
+*/
+
 a,
-.green {
+.primary {
   text-decoration: none;
   color: hsla(160, 100%, 37%, 1);
   transition: 0.4s;
