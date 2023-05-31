@@ -6,6 +6,8 @@
   padding: 2rem;
 
   font-weight: normal;
+
+  min-height: 100vh;
 }
 
 hr {
@@ -13,21 +15,26 @@ hr {
   margin-bottom: 16px;
 }
 
-/*
- primary color (currently green): hsla(160, 100%, 37%,
- (opacity depends on text/hover)
-*/
-
 a,
 .primary {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: var(--vt-c-primary);
   transition: 0.4s;
+}
+
+.customBaseWrapper {
+  background: var(--color-background-soft);
+  min-height: 200px;
+  padding: 32px;
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    background-color: var(--vt-c-primary-hover);
   }
 }
 

@@ -9,6 +9,8 @@
   --vt-c-black-mute: #282828;
 
   --vt-c-indigo: #2c3e50;
+  --vt-c-primary: hsla(160, 100%, 37%, 1);
+  --vt-c-primary-hover: hsla(160, 100%, 37%, 0.2);
 
   --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
   --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
@@ -18,7 +20,7 @@
   --vt-c-text-light-1: var(--vt-c-indigo);
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
-  --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+  --vt-c-text-dark-2: rgba(235, 235, 235, 1);
 }
 
 /* semantic color variables for this project */
@@ -37,6 +39,8 @@
   --color-text-inverted: var(--vt-c-text-dark-1);
 
   --section-gap: 160px;
+  --border-radius: 8px;
+  --border-radius-big: 14px;
 }
 
 @media (prefers-color-scheme: dark) {
