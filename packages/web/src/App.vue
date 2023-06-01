@@ -1,18 +1,27 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import HeadingTitle from '@/components/HeadingTitle.vue'
+import { PhGoogleLogo } from '@phosphor-icons/vue';
+
+// TODO implement real authentication
+const authenticated = false;
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="32" height="32" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <HeadingTitle size="regular">eventify</HeadingTitle>
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <div>
+          <RouterLink to="/">página inicial</RouterLink>
+        </div>
+        <div>
+          <RouterLink v-if="!authenticated" to="/login">entre com sua conta google <PhGoogleLogo weight="bold" color="white" line/></RouterLink>
+          <RouterLink v-else to="/me">minha conta</RouterLink>
+        </div>
       </nav>
     </div>
   </header>
@@ -22,8 +31,15 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <style scoped>
 header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 64px;
   line-height: 1.5;
   max-height: 100vh;
+}
+
+header img {
+  flex-shrink: 1;
 }
 
 .logo {
@@ -34,25 +50,33 @@ header {
 nav {
   width: 100%;
   font-size: 12px;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
   margin-top: 2rem;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+nav div {
+  text-align: center;
 }
 
-nav a.router-link-exact-active:hover {
+nav div a.router-link-exact-active {
+  color: var(--color-text);
+  text-decoration: underline;
+  text-decoration-color: var(--color-background-mute);
+}
+
+nav div a.router-link-exact-active:hover {
   background-color: transparent;
 }
 
-nav a {
+nav div a {
   display: inline-block;
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
 }
 
-nav a:first-of-type {
+nav div a:first-of-type {
   border: 0;
 }
 

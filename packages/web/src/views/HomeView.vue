@@ -1,9 +1,27 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import HeadingTitle from "@/components/HeadingTitle.vue";
+const cards = []
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <HeadingTitle size="big">bem-vindo ao eventify!</HeadingTitle>
+    <HeadingTitle>seu app para encontrar e compartilhar eventos</HeadingTitle>
+
+    <hr />
+
+    <div class="content-wrapper">
+      <HeadingTitle size="medium">principais eventos</HeadingTitle>
+
+    </div>
+
   </main>
 </template>
+
+<style scoped>
+
+.content-wrapper {
+  display: flex;
+  justify-content: center;
+}
+</style>
