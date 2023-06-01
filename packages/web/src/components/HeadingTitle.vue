@@ -1,6 +1,6 @@
 <script setup lang="ts">
 type Props = {
-  size?: "big" | "regular";
+  size?: "big" | "regular" | "medium";
 };
 
 // this is exported by default
@@ -12,7 +12,8 @@ withDefaults(defineProps<Props>(), {
 <template>
   <div class="headings">
     <h1 v-if="size === 'big'" class="primary"><slot></slot></h1>
-    <h3 v-else-if="size === 'regular'" ><slot></slot></h3>
+    <h2 v-else-if="size === 'medium'"><slot></slot></h2>
+    <h3 v-else><slot></slot></h3>
   </div>
 </template>
 
@@ -21,6 +22,11 @@ h1 {
   font-weight: 500;
   font-size: 2.6rem;
   top: -10px;
+}
+
+h2 {
+  //text-decoration: underline;
+  border-bottom: 2px solid var(--color-background-mute);
 }
 
 h3 {

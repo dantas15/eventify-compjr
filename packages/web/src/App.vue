@@ -12,7 +12,7 @@ const authenticated = false;
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="32" height="32" />
 
     <div class="wrapper">
-      <HeadingTitle size="big">eventify</HeadingTitle>
+      <HeadingTitle size="regular">eventify</HeadingTitle>
 
       <nav>
         <div>
