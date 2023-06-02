@@ -1,4 +1,11 @@
-import * as Events from './types/event';
-import * as Users from './types/user';
+import { Event, eventZodSchema } from "./types/event"
+import { userZodSchema, User, createdUserZodSchema, CreatedUser } from "./types/user";
 
-export { Events, Users}
+export {
+    User,
+    CreatedUser,
+    Event,
+    userZodSchema,
+    createdUserZodSchema,
+    eventZodSchema,
+};
