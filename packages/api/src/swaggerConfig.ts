@@ -2,7 +2,7 @@
  * swaggerConfig.ts
  */
 import swaggerJSDoc, { Options } from 'swagger-jsdoc';
-import { Event } from '@/types/event';
+
 const swaggerOptions: Options = {
   definition: {
     openapi: '3.0.0',

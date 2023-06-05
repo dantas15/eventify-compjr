@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { AppError } from '@/errors/AppError';
 import { Event } from '@/models/Event';
-import { eventZodSchema } from '@/types/event';
+import { eventZodSchema } from '@eventify/schemas';
 import { validateAndParseISODate } from '@/utils/validateDate';
 import {
   deleteImageFromFilename,

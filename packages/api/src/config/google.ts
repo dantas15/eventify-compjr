@@ -3,7 +3,7 @@ import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import jwt from 'jsonwebtoken';
 
-import { secret, expiresIn, JwtPayload } from '@/config/jwt';
+import { secret, expiresIn } from '@/config/jwt';
 import { User } from '@/models/User';
 
 config();
@@ -23,7 +23,7 @@ export function googlePassportConfig() {
         const userExists = await User.findOne({ googleId: profile.id });
 
         if (userExists) {
-          const payload: JwtPayload = {
+          const payload = {
             googleId: profile.id,
             userId: userExists._id.toString()
           };
@@ -42,7 +42,7 @@ export function googlePassportConfig() {
 
         await user.save();
 
-        const payload: JwtPayload = {
+        const payload = {
           googleId: profile.id,
           userId: user._id.toString()
         };
