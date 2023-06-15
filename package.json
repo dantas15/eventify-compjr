@@ -10,13 +10,13 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "dev": "lerna run --parallel dev",
-    "dev:api": "yarn workspace api dev",
-    "dev:web": "yarn workspace web dev",
     "lint": "lerna run --parallel lint",
     "format": "lerna run --parallel format",
-    "db:up": "yarn workspace api db:up",
-    "db:down": "yarn workspace api db:down",
-    "db:restart": "yarn workspace api db:restart"
+    "dev:api": "yarn workspace @eventify/api dev",
+    "dev:web": "yarn workspace @eventify/web dev",
+    "db:up": "yarn workspace @eventify/api db:up",
+    "db:down": "yarn workspace @eventify/api db:down",
+    "db:restart": "yarn workspace @eventify/api db:restart"
   },
   "private": "true",
   "devDependencies": {
