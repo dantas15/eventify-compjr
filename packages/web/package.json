@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "@eventify/web",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -13,6 +13,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@eventify/schemas": "^1.0.0",
     "@phosphor-icons/vue": "^2.1.4",
     "pinia": "^2.0.0-rc.15",
     "vue": "^3.2.47",

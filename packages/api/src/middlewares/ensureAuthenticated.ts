@@ -1,8 +1,13 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 
-import { JwtPayload, secret } from '@/config/jwt';
+import { secret } from '@/config/jwt';
 import { AppError } from '@/errors/AppError';
+
+type UserDataPayload = {
+  googleId: string;
+  userId: string;
+}
 
 export function ensureAuthenticated(
   request: Request,
@@ -21,7 +26,7 @@ export function ensureAuthenticated(
 
   try {
     // Validate token and pass to userData
-    request.userData = verify(token, secret) as JwtPayload;
+    request.userData = verify(token, secret) as UserDataPayload;
     return next();
   } catch (err) {
     throw new AppError('Invalid token', 401);

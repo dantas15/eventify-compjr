@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { Event as EventType } from '@/types/event';
+import { Event as EventType } from '@eventify/schemas';
 
 const eventSchema = new Schema<EventType>({
   title: { type: String, required: true },
