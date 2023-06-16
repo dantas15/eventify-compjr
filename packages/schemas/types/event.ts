@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { isStringValidObjectId } from "../utils/objectIdString";
 
 const eventZodSchema = z.object({
   title: z.string(),
@@ -10,6 +11,17 @@ const eventZodSchema = z.object({
   userId: z.string()
 });
 
-type Event = z.infer<typeof eventZodSchema>;
+const createdEventZodSchema = eventZodSchema.extend({
+  _id: z.string().refine(
+      (value) => isStringValidObjectId(value)
+      ,
+      {
+        message: '_id is not a valid ObjectId'
+      }
+  )
+});
 
-export { eventZodSchema, Event };
+type Event = z.infer<typeof eventZodSchema>;
+type CreatedEvent = z.infer<typeof createdEventZodSchema>;
+
+export { eventZodSchema, createdEventZodSchema, Event, CreatedEvent };
