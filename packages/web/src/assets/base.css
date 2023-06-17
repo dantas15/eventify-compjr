@@ -47,6 +47,7 @@
 
   --color-fire-gradient: -webkit-linear-gradient(45deg, rgba(161,1,0,1) 0%, rgba(218,31,5,1) 30%, rgba(243,60,4,1) 47%, rgba(254,101,13,1) 71%, rgba(255,193,31,1) 92%, rgba(255,247,93,1) 100%);
   --background-fire-gradient: linear-gradient(45deg, rgba(161,1,0,1) 0%, rgba(218,31,5,1) 30%, rgba(243,60,4,1) 47%, rgba(254,101,13,1) 71%, rgba(255,193,31,1) 92%, rgba(255,247,93,1) 100%);
+  --color-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
   /* Spacing */
   --section-gap: 160px;
