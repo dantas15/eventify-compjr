@@ -23,8 +23,15 @@
   --vt-c-text-dark-2: rgba(235, 235, 235, 1);
 }
 
-/* semantic color variables for this project */
 :root {
+  /* Breakpoints */
+  --breakpoint-xs: 0px;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+
+  /* Colors */
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
   --color-background-mute: var(--vt-c-white-mute);
@@ -41,7 +48,10 @@
   --color-fire-gradient: -webkit-linear-gradient(45deg, rgba(161,1,0,1) 0%, rgba(218,31,5,1) 30%, rgba(243,60,4,1) 47%, rgba(254,101,13,1) 71%, rgba(255,193,31,1) 92%, rgba(255,247,93,1) 100%);
   --background-fire-gradient: linear-gradient(45deg, rgba(161,1,0,1) 0%, rgba(218,31,5,1) 30%, rgba(243,60,4,1) 47%, rgba(254,101,13,1) 71%, rgba(255,193,31,1) 92%, rgba(255,247,93,1) 100%);
 
+  /* Spacing */
   --section-gap: 160px;
+
+  /* Border Radius */
   --border-radius: 8px;
   --border-radius-big: 14px;
 }
