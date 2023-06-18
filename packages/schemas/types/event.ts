@@ -18,7 +18,8 @@ const createdEventZodSchema = eventZodSchema.extend({
       {
         message: '_id is not a valid ObjectId'
       }
-  )
+  ),
+  date: z.string(),
 });
 
 type Event = z.infer<typeof eventZodSchema>;
