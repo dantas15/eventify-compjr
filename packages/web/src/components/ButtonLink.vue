@@ -29,17 +29,15 @@ withDefaults(defineProps<Props>(), {
   color: var(--color-text);
 }
 
+.button:hover {
+  background: var(--vt-c-primary-hover);
+}
+
 .primary-button {
   background: var(--vt-c-primary);
-}
-.primary-button:hover {
-  background: var(--vt-c-primary-hover);
 }
 
 .regular-button {
   background-color: var(--color-background);
-}
-.regular-button:hover {
-  background: var(--color-background-mute)
 }
 </style>
