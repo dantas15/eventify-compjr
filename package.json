@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "dev": "lerna run --parallel dev",
+    "dev": "lerna run --parallel --ignore=schemas dev",
     "lint": "lerna run --parallel lint",
     "format": "lerna run --parallel format",
     "dev:api": "yarn workspace @eventify/api dev",

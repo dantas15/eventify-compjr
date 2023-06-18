@@ -1,7 +1,6 @@
 {
   "name": "@eventify/schemas",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "devDependencies": {
     "typescript": "^5.1.3"
