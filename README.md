@@ -32,19 +32,23 @@ I am developing it as a trainee of the company and I hope I get approved and lea
     - [ ] cancel subscription
     - [ ] show subscriptions (users)
     - [ ] show subscriptions (events)
+  - [ ] Improve queries with relation
+    - [ ] display user info on get all event query
+    - [ ] display all events info on get all user events
+
 
 - front-end `web`
-  - [ ] study `vue.js`
+  - [x] study `vue.js`
   - pages
     - [ ] landing
       - [ ] carousel
       - [ ] about
-      - [ ] navbar
+      - [x] navbar
       - [ ] footer
     - [ ] login/signup
     - [ ] events
       - [ ] list all
-        - [ ] cards
+        - [x] cards
       - [ ] show one (modal)
     - [ ] dashboard
       - [ ] sidebar
