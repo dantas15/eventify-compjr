@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HeadingTitle from '@/components/HeadingTitle.vue'
-import { PhGoogleLogo } from '@phosphor-icons/vue';
+import { RouterView } from 'vue-router';
+import HeadingTitle from '@/components/HeadingTitle.vue';
+import AppFooter from "@/components/AppFooter.vue";
 
 // TODO implement real authentication
 const authenticated = false;
@@ -9,20 +9,12 @@ const authenticated = false;
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="32" height="32" />
+    <img alt="Eventify logo" class="logo" src="@/assets/logo.svg" width="32" height="32" />
 
     <div class="wrapper">
       <HeadingTitle size="regular">eventify</HeadingTitle>
 
-      <nav>
-        <div>
-          <RouterLink to="/">página inicial</RouterLink>
-        </div>
-        <div>
-          <RouterLink v-if="!authenticated" to="/login">entre com sua conta google <PhGoogleLogo weight="bold" color="white" line/></RouterLink>
-          <RouterLink v-else to="/me">minha conta</RouterLink>
-        </div>
-      </nav>
+      <AppNav />
     </div>
   </header>
 
@@ -47,39 +39,6 @@ header img {
   margin: 0 auto 2rem;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 2rem;
-}
-
-nav div {
-  text-align: center;
-}
-
-nav div a.router-link-exact-active {
-  color: var(--color-text);
-  text-decoration: underline;
-  text-decoration-color: var(--color-background-mute);
-}
-
-nav div a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav div a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-  border-radius: var(--border-radius);
-}
-
-nav div a:first-of-type {
-  border: 0;
-}
-
 @media (min-width: 1024px) {
   header {
     display: flex;
@@ -95,15 +54,6 @@ nav div a:first-of-type {
     display: flex;
     place-items: flex-start;
     flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
   }
 }
 </style>
