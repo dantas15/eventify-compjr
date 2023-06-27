@@ -1,17 +1,32 @@
 <script setup lang="ts">
-import { RouterLink } from "vue-router";
-import { PhGoogleLogo } from "@phosphor-icons/vue";
+import { RouterLink } from 'vue-router'
+import { PhGoogleLogo } from '@phosphor-icons/vue'
 // TODO implement real authentication
-const authenticated = false;
+const authenticated = false
+
+type Props = {
+  colors?: 'primary' | 'dim'
+}
+
+// this is exported by default
+withDefaults(defineProps<Props>(), {
+  colors: 'primary'
+})
 </script>
 
 <template>
   <nav>
     <div>
-      <RouterLink to="/">página inicial</RouterLink>
+      <RouterLink :class="{'color-dim': colors === 'dim'}" to="/">página inicial</RouterLink>
     </div>
     <div>
-      <RouterLink v-if="!authenticated" to="/login">entre com sua conta google <PhGoogleLogo weight="bold" color="white" line/></RouterLink>
+      <RouterLink
+        :class="{'color-dim': colors === 'dim'}"
+        v-if="!authenticated"
+        to="/login"
+      >
+        entre com sua conta google <PhGoogleLogo weight="bold" color="white" line/>
+      </RouterLink>
       <RouterLink v-else to="/me">minha conta</RouterLink>
     </div>
   </nav>
@@ -30,13 +45,27 @@ nav div {
   text-align: center;
 }
 
-nav div a.router-link-exact-active {
+nav div a {
   color: var(--color-text);
+}
+
+nav div a:hover {
+  color: var(--vt-c-primary);
+}
+
+nav div a.router-link-exact-active {
   text-decoration: underline;
-  text-decoration-color: var(--color-background-mute);
+}
+
+.color-dim {
+  color: var(--color-text-dim);
+}
+.color-dim:hover {
+  color: var(--color-text);
 }
 
 nav div a.router-link-exact-active:hover {
+  color: var(--color-text);
   background-color: transparent;
 }
 

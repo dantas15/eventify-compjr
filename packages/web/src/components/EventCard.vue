@@ -63,7 +63,7 @@ defineProps<Props>()
 }
 
 .card-title {
-  color: var(--color-text-inverted)
+  color: var(--color-heading);
 }
 
 .card-description {

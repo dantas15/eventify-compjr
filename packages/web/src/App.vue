@@ -2,9 +2,7 @@
 import { RouterView } from 'vue-router';
 import HeadingTitle from '@/components/HeadingTitle.vue';
 import AppFooter from "@/components/AppFooter.vue";
-
-// TODO implement real authentication
-const authenticated = false;
+import AppNav from "@/components/AppNav.vue";
 </script>
 
 <template>
@@ -13,21 +11,22 @@ const authenticated = false;
 
     <div class="wrapper">
       <HeadingTitle size="regular">eventify</HeadingTitle>
-
       <AppNav />
     </div>
   </header>
 
   <RouterView />
+  <AppFooter />
 </template>
 
 <style scoped>
 header {
   display: flex;
   flex-direction: column;
-  margin-bottom: 64px;
   line-height: 1.5;
   max-height: 100vh;
+  padding: 2rem 2rem 0;
+  margin: 0 auto 64px;
 }
 
 header img {
