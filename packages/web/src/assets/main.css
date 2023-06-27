@@ -38,6 +38,10 @@ a:hover {
   color: var(--vt-c-primary);
 }
 
+.toast-styles {
+  border-radius: var(--border-radius-big);
+}
+
 
 @media (min-width: 1024px) {
   body {
