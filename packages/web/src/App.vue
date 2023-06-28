@@ -9,8 +9,8 @@ import AppNav from "@/components/AppNav.vue";
   <header>
     <img alt="Eventify logo" class="logo" src="@/assets/logo.svg" width="32" height="32" />
 
-    <div class="wrapper">
-      <HeadingTitle size="regular">eventify</HeadingTitle>
+    <div>
+      <HeadingTitle :alignText="true" size="regular">eventify</HeadingTitle>
       <AppNav />
     </div>
   </header>
@@ -38,7 +38,7 @@ header img {
   margin: 0 auto 2rem;
 }
 
-@media (min-width: 1024px) {
+/*@media (min-width: 1024px) {
   header {
     display: flex;
     place-items: center;
@@ -54,5 +54,5 @@ header img {
     place-items: flex-start;
     flex-wrap: wrap;
   }
-}
+}*/
 </style>

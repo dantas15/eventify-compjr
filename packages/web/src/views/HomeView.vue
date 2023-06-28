@@ -73,7 +73,7 @@ const events: CreatedEvent[] = [
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   margin-top: 24px;
   gap: 16px;
 }
