@@ -18,6 +18,12 @@ withDefaults(defineProps<Props>(), {
 </template>
 
 <style scoped>
+
+.centralize h1 {
+  width: 100%;
+  text-align: center;
+}
+
 h1 {
   font-weight: 500;
   font-size: 2.6rem;
@@ -34,14 +40,22 @@ h3 {
 }
 
 .headings h1,
+.headings h2,
 .headings h3 {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
 }
 
-@media (min-width: 1024px) {
+/*@media (min-width: 1024px) {
   .headings h1,
+  .headings h2,
   .headings h3 {
-    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 24px;
   }
-}
+}*/
 </style>

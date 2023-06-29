@@ -1,32 +1,24 @@
-## instructions
+## como executar
 
-- install all dependencies on the root folder of this monorepo with `yarn bootstrap`
-- create a `.env` file on `packages/api` with the content inside `.env.example`
-- in order to run the database with docker-compose, you should know a few stuff:
-  - the data will be stored in the `data` folder, but it will be ignored by git
-- useful commands:
-  - start the database in detached mode:
+- rode `yarn` na raíz do projeto
+- crie um arquivo `.env` baseado no `.env.example`.
+- aqui será preciso utilizar MongoDB, você tem algumas opções:
+  - Crie um no [MongoDB Atlas](https://www.mongodb.com/pt-br/atlas) e adapte a url no `.env`
+  - ou você pode utilizar o docker, mais info [aqui](#comandos-úteis)
+- inicie o servidor:
+  ```bash
+    yarn dev
+  ```
+
+## comandos úteis
+  - iniciar o container do mongo:
 
     ```bash
     docker-compose up -d
     ```
 
-  - stop the database:
+  - parar o container do mongo:
 
     ```bash
     docker-compose down
     ```
-
-## how the collections are supposed to work
-
-| this is a draft, it may change when I implement it
-
-### Events
-
-| property  | type  |
-|-----------|-------|
-| title | string |
-| description | string |
-| date | date/string |
-| location | string? |
-| image | string? |

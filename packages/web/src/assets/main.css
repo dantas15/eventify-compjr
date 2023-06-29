@@ -1,21 +1,19 @@
 @import './base.css';
 
 #app {
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 2rem;
+  /*padding: 2rem;*/
 
   font-weight: normal;
 
   min-height: 100vh;
 }
-
 hr {
   margin-top: 16px;
   margin-bottom: 16px;
 }
 
-a,
 .primary {
   text-decoration: none;
   color: var(--vt-c-primary);
@@ -26,19 +24,26 @@ a,
   background: var(--color-background-soft);
   min-height: 200px;
   padding: 32px;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: var(--vt-c-primary-hover);
-  }
+a {
+  text-decoration: none;
+  color: var(--color-text);
+}
+a:hover {
+  color: var(--vt-c-primary);
 }
 
-@media (min-width: 1024px) {
+.toast-styles {
+  border-radius: var(--border-radius-big);
+}
+
+
+/*@media (min-width: 1024px) {
   body {
     display: flex;
     place-items: center;
@@ -49,4 +54,4 @@ a,
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }
-}
+}*/

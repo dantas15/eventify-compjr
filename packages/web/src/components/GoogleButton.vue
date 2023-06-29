@@ -1,21 +1,19 @@
 <script setup lang="ts">
 import { PhSpinnerGap, PhGoogleLogo } from "@phosphor-icons/vue";
-import {ref} from "vue";
 
-const loading = ref(false);
-function googleLogin() {
-  loading.value = true;
-  setTimeout(() => {
-    loading.value = false;
-  },2000)
-}
+type Props = {
+  loading: boolean;
+  handleOnClick: () => void;
+};
+
+defineProps<Props>();
 </script>
 
 <template>
-  <button @click="googleLogin" class="google-button">
+  <button @click="handleOnClick" class="google-button">
     entre com o google
-    <PhGoogleLogo v-if="!loading" weight="bold"/>
-    <PhSpinnerGap v-else weight="bold" class="loading-icon"/>
+    <PhSpinnerGap v-if="loading" weight="bold" class="loading-icon"/>
+    <PhGoogleLogo v-else weight="bold"/>
   </button>
 </template>
 

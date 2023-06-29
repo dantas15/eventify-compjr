@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { isStringValidObjectId } from "../utils/objectIdString";
 
 const userZodSchema = z.object({
   name: z.string(),
@@ -9,7 +10,7 @@ const userZodSchema = z.object({
 
 const createdUserZodSchema = userZodSchema.extend({
   _id: z.string().refine(
-      (value) => /^[a-f\d]{24}$/i.test(value)
+      (value) => isStringValidObjectId(value)
       ,
       {
         message: '_id is not a valid ObjectId'
