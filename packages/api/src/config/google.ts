@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 
 import { secret, expiresIn } from '@/config/jwt';
 import { User } from '@/models/User';
+import { AppError } from "@/errors/AppError";
 
 config();
 
@@ -27,30 +28,35 @@ export function googlePassportConfig() {
             googleId: profile.id,
             userId: userExists._id.toString()
           };
-          const token = jwt.sign(payload, secret, {
+
+          jwt.sign(payload, secret, {
             expiresIn
+          }, (err, token) => {
+            if(err) throw new AppError("Could not sign JWT");
+            return done(null, { profile, token });
           });
-          return done(null, { profile, token });
+        } else {
+          const user = new User({
+            googleId: profile.id,
+            // TODO maybe look for the first verified email?
+            email: profile.emails ? profile.emails[0].value : undefined,
+            name: profile.displayName
+          });
+
+          await user.save();
+
+          const payload = {
+            googleId: profile.id,
+            userId: user._id.toString()
+          };
+
+          jwt.sign(payload, secret, {
+            expiresIn
+          }, (err, token) => {
+            if(err) throw new AppError("Could not sign JWT");
+            return done(null, { profile, token });
+          });
         }
-
-        const user = new User({
-          googleId: profile.id,
-          // TODO maybe look for the first verified email?
-          email: profile.emails ? profile.emails[0].value : undefined,
-          name: profile.displayName
-        });
-
-        await user.save();
-
-        const payload = {
-          googleId: profile.id,
-          userId: user._id.toString()
-        };
-
-        const token = jwt.sign(payload, secret, {
-          expiresIn
-        });
-        return done(null, { profile, token });
       }
     )
   );

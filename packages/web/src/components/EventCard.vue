@@ -1,20 +1,29 @@
 <script setup lang="ts">
-import { formatDistanceToNow } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
+import { formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
 import { PhCalendarPlus } from '@phosphor-icons/vue'
-import { CreatedEvent } from '@eventify/schemas';
-import ButtonLink from "@/components/ButtonLink.vue";
+import { CreatedEvent } from '@eventify/schemas'
+import ButtonLink from '@/components/ButtonLink.vue'
 
 type Props = {
-  event: Pick<CreatedEvent, "_id" | "title" | "description" | "date" | "location" | "image" | "userId">;
+  event: Pick<
+    CreatedEvent,
+    '_id' | 'title' | 'description' | 'date' | 'location' | 'image' | 'userId'
+  >
 }
 defineProps<Props>()
 
+const apiUrl = import.meta.env.VITE_API_URL;
 </script>
 
 <template>
   <article class="card">
-    <img v-if="event.image" :src="event.image" :alt="`Evento: ${event.title}`" class="card-image"/>
+    <img
+      v-if="event.image"
+      :src="apiUrl + '/files/image/' + event.image"
+      :alt="`Evento: ${event.title}`"
+      class="card-image"
+    />
     <div class="card-content" :class="{ 'center-card-if-not-image': !event.image }">
       <h2 class="card-title">
         {{ event.title }}
@@ -30,7 +39,7 @@ defineProps<Props>()
     <div class="card-footer">
       <p class="card-footer-user">
         criado por:
-        <span class="card-footer-username">{{ event.userId }}</span>
+        <span class="card-footer-username">{{ event.userId.name }}</span>
       </p>
       <ButtonLink href="#">quero participar!</ButtonLink>
     </div>
@@ -108,5 +117,4 @@ defineProps<Props>()
   justify-content: center;
   flex-direction: column;
 }
-
 </style>

@@ -10,7 +10,7 @@ import {
 
 export class EventController {
   async all(request: Request, response: Response) {
-    const events = await Event.find();
+    const events = await Event.find().populate('userId');
     return response.json(events);
   }
 
@@ -22,7 +22,7 @@ export class EventController {
     }
 
     try {
-      const event = await Event.findById(id);
+      const event = await Event.findById(id).populate('User');
       return response.json(event);
     } catch {
       throw new AppError('Event not found', 404);
@@ -70,7 +70,7 @@ export class EventController {
       throw new AppError('Event not found', 404);
     }
 
-    if (event.userId !== userData.userId) {
+    if (event.userId.toString() !== userData.userId) {
       throw new AppError('User not authorized');
     }
 
@@ -110,7 +110,7 @@ export class EventController {
       throw new AppError('Event not found', 404);
     }
 
-    if (event.userId !== userData.userId) {
+    if (event.userId.toString() !== userData.userId) {
       throw new AppError('User not authorized');
     }
 
@@ -144,12 +144,12 @@ export class EventController {
       throw new AppError('Event not found');
     }
 
-    if (event.userId !== userData.userId) {
+    if (event.userId.toString() !== userData.userId) {
       throw new AppError('User not authorized');
     }
 
     if (event.image) {
-      deleteImageFromFilename(getImageFilePath(event.image));
+      deleteImageFromFilename(event.image);
     }
 
     try {
@@ -160,7 +160,7 @@ export class EventController {
           }
         },
         { new: true }
-      );
+      ).populate(['userId']);
       response.json(updatedEvent);
     } catch (err) {
       console.log(err);

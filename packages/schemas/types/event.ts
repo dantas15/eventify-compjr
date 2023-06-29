@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { isStringValidObjectId } from "../utils/objectIdString";
+import { CreatedUser } from "./user";
 
 const eventZodSchema = z.object({
   title: z.string(),
@@ -8,7 +9,7 @@ const eventZodSchema = z.object({
   durationInMinutes: z.number().optional(),
   location: z.string().optional(),
   image: z.string().optional(),
-  userId: z.string()
+  userId: z.string().or(z.any()),
 });
 
 const createdEventZodSchema = eventZodSchema.extend({
@@ -23,6 +24,8 @@ const createdEventZodSchema = eventZodSchema.extend({
 });
 
 type Event = z.infer<typeof eventZodSchema>;
-type CreatedEvent = z.infer<typeof createdEventZodSchema>;
+type CreatedEvent = Omit<z.infer<typeof createdEventZodSchema>, "userId"> & {
+  userId: CreatedUser;
+};
 
 export { eventZodSchema, createdEventZodSchema, Event, CreatedEvent };

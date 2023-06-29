@@ -54,7 +54,7 @@ const googleController = new GoogleController();
 router.get(
   '/auth/google/callback',
   passport.authenticate('google', {
-    scope: ['profile', 'email'],
+    failureRedirect: '/',
     session: false
   }),
   googleController.auth

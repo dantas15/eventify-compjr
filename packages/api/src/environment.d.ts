@@ -10,6 +10,7 @@ declare global {
       MONGO_DATABASE_NAME: string;
       GOOGLE_CLIENT_ID: string;
       GOOGLE_CLIENT_SECRET: string;
+      FRONT_END_URL: string;
       API_URL?: string;
       JWT_SECRET?: string;
       JWT_EXPIRES_IN?: string;

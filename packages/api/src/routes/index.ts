@@ -18,7 +18,7 @@ router.get('/', (request, response) => {
 router.use(swaggerRoutes);
 router.use('/events', eventRoutes);
 router.use('/users', userRoutes);
-router.use('/files', fileRoutes);
+router.use(fileRoutes);
 router.use(googleRoutes);
 
 router.use(
