@@ -51,8 +51,9 @@ const googleController = new GoogleController();
  *
  */
 
+router.get('/auth/google/callback', googleController.callback);
 router.get(
-  '/auth/google/callback',
+  '/auth/google/verify',
   passport.authenticate('google', {
     failureRedirect: '/',
     session: false
