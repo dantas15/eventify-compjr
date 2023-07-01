@@ -19,7 +19,7 @@ const linkedinWeight = ref<WeightTypes>("fill");
       desenvolvido com 💜 e ☕
       <div class="socials">
         <a
-          href="https://github.com/satnadg/eventify-compjr"
+          href="https://github.com/gustavod5/eventify-compjr"
           target="_blank"
           @mouseover="ghLogoWeight = 'duotone'"
           @mouseleave="ghLogoWeight = 'fill'"

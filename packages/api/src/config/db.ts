@@ -8,10 +8,13 @@ const {
   MONGO_ROOT_PASSWORD,
   MONGO_HOST,
   MONGO_PORT,
-  MONGO_DATABASE_NAME
+  MONGO_DATABASE_NAME,
+  MONG0_CONNECTION_STRING
 } = process.env;
 
-const mongoString = `mongodb://${MONGO_ROOT_USERNAME}:${MONGO_ROOT_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}`;
+const mongoString = !MONG0_CONNECTION_STRING
+  ? `mongodb://${MONGO_ROOT_USERNAME}:${MONGO_ROOT_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}`
+  : MONG0_CONNECTION_STRING;
 async function connect() {
   try {
     await mongoose.connect(mongoString, { dbName: MONGO_DATABASE_NAME });

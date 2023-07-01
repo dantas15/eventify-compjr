@@ -1,18 +1,24 @@
-import { createApp } from 'vue';
-import { createPinia } from 'pinia';
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 
-import App from './App.vue';
-import router from './router';
+import App from './App.vue'
+import router from './router'
 
-import { Toast, options as toastOptions } from './config/toasts';
-import 'vue-toastification/dist/index.css';
+import { Toast, options as toastOptions } from './config/toasts'
+import 'vue-toastification/dist/index.css'
 
-import './assets/main.css';
+import './assets/main.css'
 
-const app = createApp(App);
+import vue3GoogleLogin from 'vue3-google-login'
 
-app.use(Toast, toastOptions);
-app.use(createPinia());
-app.use(router);
+const app = createApp(App)
 
-app.mount('#app');
+app.use(vue3GoogleLogin, {
+  clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID
+})
+
+app.use(Toast, toastOptions)
+app.use(createPinia())
+app.use(router)
+
+app.mount('#app')

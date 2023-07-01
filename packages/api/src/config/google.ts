@@ -5,19 +5,22 @@ import jwt from 'jsonwebtoken';
 
 import { secret, expiresIn } from '@/config/jwt';
 import { User } from '@/models/User';
-import { AppError } from "@/errors/AppError";
+import { AppError } from '@/errors/AppError';
 
 config();
+
+export const clientId = process.env.GOOGLE_CLIENT_ID;
+export const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
 
 export function googlePassportConfig() {
   passport.use(
     new GoogleStrategy(
       {
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        clientID: clientId,
+        clientSecret: clientSecret,
         callbackURL: `${
           process.env.API_URL || `http://127.0.0.1:${process.env.PORT}`
-        }/auth/google/callback`,
+        }/auth/google/verify`,
         passReqToCallback: true
       },
       async (request, accessToken, refreshToken, profile, done) => {
@@ -29,12 +32,17 @@ export function googlePassportConfig() {
             userId: userExists._id.toString()
           };
 
-          jwt.sign(payload, secret, {
-            expiresIn
-          }, (err, token) => {
-            if(err) throw new AppError("Could not sign JWT");
-            return done(null, { profile, token });
-          });
+          jwt.sign(
+            payload,
+            secret,
+            {
+              expiresIn
+            },
+            (err, token) => {
+              if (err) throw new AppError('Could not sign JWT');
+              return done(null, { profile, token });
+            }
+          );
         } else {
           const user = new User({
             googleId: profile.id,
@@ -50,12 +58,17 @@ export function googlePassportConfig() {
             userId: user._id.toString()
           };
 
-          jwt.sign(payload, secret, {
-            expiresIn
-          }, (err, token) => {
-            if(err) throw new AppError("Could not sign JWT");
-            return done(null, { profile, token });
-          });
+          jwt.sign(
+            payload,
+            secret,
+            {
+              expiresIn
+            },
+            (err, token) => {
+              if (err) throw new AppError('Could not sign JWT');
+              return done(null, { profile, token });
+            }
+          );
         }
       }
     )
