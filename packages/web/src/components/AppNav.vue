@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-import { PhGoogleLogo } from '@phosphor-icons/vue'
-// TODO implement real authentication
-const authenticated = false
+import { useUserAuthStore } from '@/stores/userAuth';
+import GoogleAuth from '@/components/GoogleAuth.vue';
 
 type Props = {
   colors?: 'primary' | 'dim'
 }
 
+const store = useUserAuthStore();
+
 // this is exported by default
 withDefaults(defineProps<Props>(), {
   colors: 'primary'
 })
+
 </script>
 
 <template>
@@ -20,14 +22,13 @@ withDefaults(defineProps<Props>(), {
       <RouterLink :class="{'color-dim': colors === 'dim'}" to="/">página inicial</RouterLink>
     </div>
     <div>
-      <RouterLink
-        :class="{'color-dim': colors === 'dim'}"
-        v-if="!authenticated"
-        to="/login"
-      >
-        entre com sua conta google <PhGoogleLogo weight="bold" color="white" line/>
-      </RouterLink>
-      <RouterLink v-else to="/me">minha conta</RouterLink>
+      <div v-if="!store.authenticated">
+        <GoogleAuth />
+      </div>
+      <div v-else class="authenticated-info">
+        <img :src="store.userImageUrl" :alt="`profile picture from ${store.email}`" />
+        <RouterLink to="/me">minha conta</RouterLink>
+      </div>
     </div>
   </nav>
 </template>
@@ -89,5 +90,17 @@ nav div a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
+}
+
+.authenticated-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.authenticated-info img {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--border-radius);
 }
 </style>
