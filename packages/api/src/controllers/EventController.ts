@@ -22,7 +22,7 @@ export class EventController {
     }
 
     try {
-      const event = await Event.findById(id).populate('User');
+      const event = await Event.findById(id).populate('userId');
       return response.json(event);
     } catch {
       throw new AppError('Event not found', 404);
@@ -153,14 +153,16 @@ export class EventController {
     }
 
     try {
-      const updatedEvent = await event.updateOne(
-        {
-          $set: {
-            image: file.filename
-          }
-        },
-        { new: true }
-      ).populate(['userId']);
+      const updatedEvent = await event
+        .updateOne(
+          {
+            $set: {
+              image: file.filename
+            }
+          },
+          { new: true }
+        )
+        .populate(['userId']);
       response.json(updatedEvent);
     } catch (err) {
       console.log(err);
