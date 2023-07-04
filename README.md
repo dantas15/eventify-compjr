@@ -1,6 +1,6 @@
 # eventify-compjr
 
-Esse projeto é um monorepo para uma [empresa júnior](https://juniorenterprises.eu/what-is-a-junior-enterprise/), a [Comp Junior](https://www.compjunior.com.br/)!, da [UFLA (Universidade Federal de Lavras)](https://ufla.br/).
+Esse projeto é um monorepo para uma [empresa júnior](https://juniorenterprises.eu/what-is-a-junior-enterprise/), a [Comp Junior](https://www.compjunior.com.br/), da [UFLA (Universidade Federal de Lavras)](https://ufla.br/)!.
 Desenvolvi durante meu processo de trainee, espero ser aprovado :P
 
 ![Print da pagina principal](./.github/eventify.png)
